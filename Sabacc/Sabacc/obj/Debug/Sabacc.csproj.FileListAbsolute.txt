@@ -1,0 +1,10 @@
+D:\DATA\dadiesa\Sabacc\Sabacc\bin\Debug\Sabacc.exe.config
+D:\DATA\dadiesa\Sabacc\Sabacc\bin\Debug\Sabacc.exe
+D:\DATA\dadiesa\Sabacc\Sabacc\bin\Debug\Sabacc.pdb
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.csprojResolveAssemblyReference.cache
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.Properties.Resources.resources
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.csproj.GenerateResource.Cache
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.exe
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.pdb
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.Sabacc.resources
+D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.resources
