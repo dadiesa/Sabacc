@@ -30,6 +30,8 @@
         {
             this.Dice = new System.Windows.Forms.Button();
             this.deck = new System.Windows.Forms.Button();
+            this.showHand = new System.Windows.Forms.Button();
+            this.Numpoint = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Dice
@@ -44,7 +46,6 @@
             // 
             // deck
             // 
-            this.deck.Enabled = false;
             this.deck.Location = new System.Drawing.Point(65, 293);
             this.deck.Name = "deck";
             this.deck.Size = new System.Drawing.Size(170, 59);
@@ -52,16 +53,39 @@
             this.deck.Text = "Piocher";
             this.deck.UseVisualStyleBackColor = true;
             // 
+            // showHand
+            // 
+            this.showHand.Enabled = false;
+            this.showHand.Location = new System.Drawing.Point(571, 293);
+            this.showHand.Name = "showHand";
+            this.showHand.Size = new System.Drawing.Size(170, 59);
+            this.showHand.TabIndex = 2;
+            this.showHand.Text = "Montrer sa main";
+            this.showHand.UseVisualStyleBackColor = true;
+            // 
+            // Numpoint
+            // 
+            this.Numpoint.AutoSize = true;
+            this.Numpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.Numpoint.Location = new System.Drawing.Point(631, 30);
+            this.Numpoint.Name = "Numpoint";
+            this.Numpoint.Size = new System.Drawing.Size(68, 20);
+            this.Numpoint.TabIndex = 6;
+            this.Numpoint.Text = "Point(s)";
+            // 
             // PlayersForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 394);
+            this.Controls.Add(this.Numpoint);
+            this.Controls.Add(this.showHand);
             this.Controls.Add(this.deck);
             this.Controls.Add(this.Dice);
             this.Name = "PlayersForms";
             this.Text = "PlayersForms";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -69,5 +93,7 @@
 
         private System.Windows.Forms.Button Dice;
         private System.Windows.Forms.Button deck;
+        public System.Windows.Forms.Button showHand;
+        private System.Windows.Forms.Label Numpoint;
     }
 }

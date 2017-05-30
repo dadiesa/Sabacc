@@ -29,15 +29,20 @@ namespace Sabacc
             //récupère la valeur de la combobox et la convertie en int
             numberOfPlayer = Convert.ToInt32(chooseNumPlayer.Text.ToString());
             
-            
+            //Crée des forms pour le nombre de joueur
             for (int i = 0; i <= numberOfPlayer;i++)
             {
-                string formName = Convert.ToString(i);
-
+                string formName = Convert.ToString(i);                
                 PlayersForms PlayersForms = new PlayersForms();
-                PlayersForms.Show();
-                this.Hide();
-            }
+
+                
+
+                if (i == 1)
+                {
+                    PlayersForms.Show();
+                }
+               // this.Hide();
+            }//end for
         }
     }
 }

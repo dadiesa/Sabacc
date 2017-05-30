@@ -8,3 +8,13 @@ D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.exe
 D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.pdb
 D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.Sabacc.resources
 D:\DATA\dadiesa\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.resources
+H:\Démomot\Sabacc\Sabacc\bin\Debug\Sabacc.exe.config
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.exe
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.pdb
+H:\Démomot\Sabacc\Sabacc\bin\Debug\Sabacc.exe
+H:\Démomot\Sabacc\Sabacc\bin\Debug\Sabacc.pdb
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.csprojResolveAssemblyReference.cache
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.Sabacc.resources
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.resources
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.Properties.Resources.resources
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.csproj.GenerateResource.Cache
