@@ -8,36 +8,37 @@ using System.Windows.Forms;
 
 namespace Sabacc
 {
-    class createCards
-    {       
+    public class createCards
+    {
+        int CardSValue;
+        int allCards = 2;
+        int i;
 
-        private string cardName;
-
-        public void createCard(string cardNames)
+        public int cardValue(int i)
         {
-            this.cardName = cardNames;
-
-            /*Button cardName = new Button();
-            cardName.Name = "i";
-            cardName.Location = new Point(50*Convert.ToInt32(cardName), 100);
-            cardName.BackColor = Color.Black;
-            cardName.Width = 100;
-            cardName.Height = 100;*/
-            //cardName.Controls.Add(cardName);
-
-           /* int i = 1;
-            while (i <= 2)
-            {
-                Button b = new Button();
-                b.Size = new Size(100, 100);
-                b.Location = new Point(i * 50, i * 50); // Gaffe à ce qu'il soit différent pour chaque boucle
-                                                        // Sinon tes boutons seront superposés
-                                                        //b.Click += new EventHandler(methodeAppeleeLorsDuClicSurCeBouton);
-                //this.Controls.Add(b);
-            }*/
-
-
+            this.i = i;
+            Random random = new Random();
+            return (random.Next(-11, 11));
         }//end card
+
+        public void Deck(int valueOfCard,int allCards)
+        {
+                //Crée le bouton
+                this.CardSValue = valueOfCard;
+                this.allCards = allCards;
+                Button card = new Button();
+                card.Font = new Font(card.Font.Name, 20);
+                card.Size = new System.Drawing.Size(100,100);
+
+                card.Location = new Point(300, 125);
+
+                PlayersForms.ActiveForm.Controls.Add(card);
+                //card.Text = Convert.ToString(CardSValue);
+                
+                
+
+
+        }
 
     }
 }

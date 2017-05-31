@@ -13,6 +13,7 @@ namespace Sabacc
     public partial class Sabacc : Form
     {
         private int numberOfPlayer;
+        public string formName;
 
         public Sabacc()
         {
@@ -28,21 +29,12 @@ namespace Sabacc
         {
             //récupère la valeur de la combobox et la convertie en int
             numberOfPlayer = Convert.ToInt32(chooseNumPlayer.Text.ToString());
-            
-            //Crée des forms pour le nombre de joueur
-            for (int i = 0; i <= numberOfPlayer;i++)
-            {
-                string formName = Convert.ToString(i);                
+                     
                 PlayersForms PlayersForms = new PlayersForms();
-
-                
-
-                if (i == 1)
-                {
-                    PlayersForms.Show();
-                }
-               // this.Hide();
+                PlayersForms.Visible = true;
+                PlayersForms.Text = "Joueur 1";
+                // this.Hide();
             }//end for
-        }
+        }//end StartPlay
     }
-}
+
