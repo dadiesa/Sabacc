@@ -13,31 +13,48 @@ namespace Sabacc
         int CardSValue;
         int allCards = 2;
         int i;
+        int j;
 
-        public int cardValue(int i)
+        /// <summary>
+        /// Retourne un chiffre aléatoire pour la valeur de la carte
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public int cardValue()
         {
-            this.i = i;
+
             Random random = new Random();
-            return (random.Next(-11, 11));
+            return (random.Next(-8,8));
         }//end card
 
-        public void Deck(int valueOfCard,int allCards)
+        /// <summary>
+        /// Pioche de carte
+        /// </summary>
+        /// <param name="valueOfCard">valeur de la carte</param>
+        /// <param name="allCards">Nombre de carte</param>
+        public int Deck(int valueOfCard,int allCards,int cardDeck)
         {
                 //Crée le bouton
+                this.j = cardDeck;
                 this.CardSValue = valueOfCard;
                 this.allCards = allCards;
+            
                 Button card = new Button();
                 card.Font = new Font(card.Font.Name, 20);
-                card.Size = new System.Drawing.Size(100,100);
+                card.Size = new System.Drawing.Size(100, 100);
 
-                card.Location = new Point(300, 125);
+                card.Location = new Point(100 * j, 125);
 
                 PlayersForms.ActiveForm.Controls.Add(card);
-                //card.Text = Convert.ToString(CardSValue);
-                
-                
-
-
+            if (valueOfCard == 0)
+            {
+                card.Text = "idiot";
+            }
+            else
+            {
+                card.Text = Convert.ToString(CardSValue);
+            }
+            return CardSValue;
         }
 
     }

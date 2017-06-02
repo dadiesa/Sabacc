@@ -19,7 +19,7 @@ namespace Sabacc
         {
             InitializeComponent();
         }
-       
+
         /// <summary>
         /// Récupère le nombre de joueur et lance la partie
         /// </summary>
@@ -29,12 +29,12 @@ namespace Sabacc
         {
             //récupère la valeur de la combobox et la convertie en int
             numberOfPlayer = Convert.ToInt32(chooseNumPlayer.Text.ToString());
-                     
-                PlayersForms PlayersForms = new PlayersForms();
-                PlayersForms.Visible = true;
-                PlayersForms.Text = "Joueur 1";
-                // this.Hide();
-            }//end for
+            //Crée le premier joueur
+            PlayersForms PlayersForms = new PlayersForms(numberOfPlayer);
+            PlayersForms.Visible = true;
+            PlayersForms.Text = "Joueur 1";
+            this.Hide();
         }//end StartPlay
     }
+}
 

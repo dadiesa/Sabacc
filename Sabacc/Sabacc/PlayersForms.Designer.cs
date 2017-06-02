@@ -28,25 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Dice = new System.Windows.Forms.Button();
             this.deck = new System.Windows.Forms.Button();
             this.showHand = new System.Windows.Forms.Button();
             this.Numpoint = new System.Windows.Forms.Label();
             this.nextPlayer = new System.Windows.Forms.Button();
+            this.DicePtc = new System.Windows.Forms.PictureBox();
+            this.diceResult = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Dice
-            // 
-            this.Dice.Location = new System.Drawing.Point(12, 12);
-            this.Dice.Name = "Dice";
-            this.Dice.Size = new System.Drawing.Size(63, 59);
-            this.Dice.TabIndex = 0;
-            this.Dice.Text = "Dice";
-            this.Dice.UseVisualStyleBackColor = true;
-            this.Dice.Click += new System.EventHandler(this.Dice_Click);
             // 
             // deck
             // 
+            this.deck.Enabled = false;
             this.deck.Location = new System.Drawing.Point(12, 260);
             this.deck.Name = "deck";
             this.deck.Size = new System.Drawing.Size(170, 59);
@@ -86,29 +79,51 @@
             this.nextPlayer.UseVisualStyleBackColor = true;
             this.nextPlayer.Click += new System.EventHandler(this.nextPlayer_Click);
             // 
+            // DicePtc
+            // 
+            this.DicePtc.Image = global::Sabacc.Properties.Resources.de_05;
+            this.DicePtc.Location = new System.Drawing.Point(12, 12);
+            this.DicePtc.Name = "DicePtc";
+            this.DicePtc.Size = new System.Drawing.Size(65, 59);
+            this.DicePtc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DicePtc.TabIndex = 8;
+            this.DicePtc.TabStop = false;
+            this.DicePtc.Click += new System.EventHandler(this.DicePtc_Click);
+            // 
+            // diceResult
+            // 
+            this.diceResult.AutoSize = true;
+            this.diceResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.diceResult.Location = new System.Drawing.Point(101, 36);
+            this.diceResult.Name = "diceResult";
+            this.diceResult.Size = new System.Drawing.Size(0, 20);
+            this.diceResult.TabIndex = 9;
+            // 
             // PlayersForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 394);
+            this.Controls.Add(this.diceResult);
+            this.Controls.Add(this.DicePtc);
             this.Controls.Add(this.nextPlayer);
             this.Controls.Add(this.Numpoint);
             this.Controls.Add(this.showHand);
             this.Controls.Add(this.deck);
-            this.Controls.Add(this.Dice);
             this.Name = "PlayersForms";
             this.Text = "PlayersForms";
+            ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button Dice;
         private System.Windows.Forms.Button deck;
         public System.Windows.Forms.Button showHand;
         private System.Windows.Forms.Label Numpoint;
         private System.Windows.Forms.Button nextPlayer;
+        private System.Windows.Forms.PictureBox DicePtc;
+        private System.Windows.Forms.Label diceResult;
     }
 }

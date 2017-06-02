@@ -45,6 +45,7 @@
             // chooseNumPlayer
             // 
             this.chooseNumPlayer.BackColor = System.Drawing.SystemColors.Window;
+            this.chooseNumPlayer.DisplayMember = "2";
             this.chooseNumPlayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chooseNumPlayer.FormattingEnabled = true;
             this.chooseNumPlayer.Items.AddRange(new object[] {
