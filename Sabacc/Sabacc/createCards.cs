@@ -12,7 +12,6 @@ namespace Sabacc
     {
         int CardSValue;
         int allCards = 2;
-        int i;
         int j;
 
         /// <summary>
@@ -43,9 +42,9 @@ namespace Sabacc
                 card.Font = new Font(card.Font.Name, 20);
                 card.Size = new System.Drawing.Size(100, 100);
 
-                card.Location = new Point(100 * j, 125);
+                card.Location = new Point(120 * j, 125);
 
-                PlayersForms.ActiveForm.Controls.Add(card);
+               // PlayersForms.ActiveForm.Controls.Add(card);
             if (valueOfCard == 0)
             {
                 card.Text = "idiot";

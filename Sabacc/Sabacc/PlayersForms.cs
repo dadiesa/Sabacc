@@ -13,40 +13,15 @@ namespace Sabacc
     public partial class PlayersForms : Form
     {
 
-        public int[,] playerValues = new int[5, 8];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public int[,] playerValues;
         //Constante
         const int numOfCard = 1;
         //Variables                
         int dice;
         int allCards = 2;
         int zeroGet = 0;
+        static int i = 0;
+        static int playerInGame = 0;
         static int counter = 2;
         static int ValueOfCard;
         static int cardDeck;
@@ -65,25 +40,15 @@ namespace Sabacc
         {
             InitializeComponent();
 
-            this.numberOfPlayer = numberOfPlayer;
-
-            //Crée les boutons de base de l'utilisateur    
+            this.choosePlayer.SelectedIndex = 0;
+            this.numberOfPlayer = numberOfPlayer; 
 
             //Prend une valeur aléatoire pour la carte
             ValueOfCard = carteValue.cardValue();
-            //Crée la carte               
-            Button card = new Button();
-            card.Size = new System.Drawing.Size(100, 100);
-            card.Tag = carteValue.cardValue();
-            card.Font = new Font(card.Font.Name, 20);
-            //Si c'est la première carte crée elle se place différement
-            playerValues[0, 1] = ValueOfCard;
-            card.Location = new Point(50, 125);
-            card.Text = Convert.ToString(ValueOfCard);
-            Controls.Add(card);
+
+            playerValues = new int[5, 9];
+            playerValues[0, 0] = ValueOfCard;
         }//end PlayerForm
-
-
         
 
         /// <summary>
@@ -122,7 +87,7 @@ namespace Sabacc
             }
             allCards++;
             //Désactive le bouton de pioche et active celui de la main
-            if (cardDeck == 7)
+            if (cardDeck == 8)
             {
                 deck.Enabled = false;
             }
@@ -131,9 +96,41 @@ namespace Sabacc
             {
                 showHand.Enabled = true;
             }//end if 
+            playerInGame = Convert.ToInt32(choosePlayer.Text.ToString());
+            
+            //Place la valeur dans la tableau
+            playerValues[playerInGame-1,cardDeck] = ValueOfCard;
 
-            playerValues[0,cardDeck+1] = ValueOfCard;
-                       
+            
+            switch (i)
+            {
+                case 0:
+                    card1.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+                    break;
+                case 1:
+                    card2.Text = Convert.ToString(playerValues[playerInGame - 1, 1]);
+                    break;
+                case 2:
+                    card3.Text = Convert.ToString(playerValues[playerInGame - 1, 2]);
+                    break;
+                case 3:
+                    card4.Text = Convert.ToString(playerValues[playerInGame - 1, 3]);
+                    break;
+                case 4:
+                    card5.Text = Convert.ToString(playerValues[playerInGame - 1, 4]);
+                    break;
+                case 5:
+                    card6.Text = Convert.ToString(playerValues[playerInGame - 1, 5]);
+                    break;
+                case 6:
+                    card7.Text = Convert.ToString(playerValues[playerInGame - 1, 6]);
+                    break;
+                case 7:
+                    card8.Text = Convert.ToString(playerValues[playerInGame - 1, 7]);
+                    break;
+            }
+            i++;
+
         }//end deckClick
 
         /// <summary>
@@ -143,21 +140,40 @@ namespace Sabacc
         /// <param name="e"></param>
         private void nextPlayer_Click(object sender, EventArgs e)
         {
-            //Limit le ^nombre de joueur au nombre de joueur choisi
+            //Limite le nombre de joueur au nombre de joueur choisi
             if (counter <= numberOfPlayer)
             {
-
-                //Crée des forms pour le nombre de joueur
-                PlayersForms PlayersForms = new PlayersForms(numberOfPlayer);
-                PlayersForms.Visible = true;
-                PlayersForms.Text = "Joueur " + Convert.ToString(counter);
-                PlayersForms.Tag = counter;
-                cardDeck = 0;
+                this.choosePlayer.SelectedIndex = playerInGame++;
+                diceResult.Text = null;
+                DicePtc.Enabled = true;
+                deck.Enabled = true;
+                showHand.Enabled = false;
 
             }// end if
-            counter++;
-        }//end nextPlayerClick
+            //Recommence le tour
+            else
+            {
+                this.choosePlayer.SelectedIndex = 0;
+                counter = 0;
+                playerInGame = 0;
+            }
 
+            card1.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card2.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card3.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card4.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card5.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card6.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card7.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+            card8.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+
+
+
+
+            counter++;
+            
+        }//end nextPlayerClick
+                       
         /// <summary>
         /// Lance le dé
         /// </summary>
@@ -168,7 +184,7 @@ namespace Sabacc
             Random random = new Random();
             dice = random.Next(1, 6);
 
-            int returnValue = RandomNumber(1, 6);
+            int returnValue = RandomNumber(1, 3); ///////////////////////////
             
             diceResult.Text = Convert.ToString(returnValue);
         
