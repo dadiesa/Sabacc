@@ -6,28 +6,28 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Sabacc
 {
     public partial class PlayersForms : Form
     {
-
-        public int[,] playerValues;
+        
+        public string[,] playerValues;
         //Constante
         const int numOfCard = 1;
         //Variables                
         int dice;
         int allCards = 2;
         int zeroGet = 0;
+        int time = 0;
         static int i = 0;
         static int playerInGame = 0;
         static int counter = 2;
         static int ValueOfCard;
         static int cardDeck;
         public int numberOfPlayer;
-        //Crée un tableau de bouton pour les cartes
-        public Button[] card = new Button[numOfCard];
 
         //Création bouttons
         createCards carteValue = new createCards();
@@ -40,16 +40,18 @@ namespace Sabacc
         {
             InitializeComponent();
 
+            timerChangeValue.Start();
+            
             this.choosePlayer.SelectedIndex = 0;
             this.numberOfPlayer = numberOfPlayer; 
 
             //Prend une valeur aléatoire pour la carte
             ValueOfCard = carteValue.cardValue();
 
-            playerValues = new int[5, 9];
-            playerValues[0, 0] = ValueOfCard;
+            playerValues = new string[5, 9];
+            playerValues[0, 0] = Convert.ToString(ValueOfCard);
         }//end PlayerForm
-        
+
 
         /// <summary>
         /// Création d'un dé
@@ -71,66 +73,120 @@ namespace Sabacc
         /// <param name="e"></param>
         private void deck_Click(object sender, EventArgs e)
         {
-            //Indique le nombre de carte piochées
-            cardDeck++;
-            ValueOfCard = carteValue.cardValue();
-            //Appel la méthode pour obtenir une valeur
-            carteValue.Deck(ValueOfCard,allCards,cardDeck);
-            //Compte le nombre de zéro
-            if (ValueOfCard == 0)
+            //Si le joueur a piocher toutes les cartes une d'elles est remplacé par une nouvelle valeur
+            if (playerValues[playerInGame,7] != null )
             {
-                zeroGet++;
-            }
-            if (zeroGet == 3)
-            {
-                ValueOfCard = ValueOfCard + cardDeck;
-            }
-            allCards++;
-            //Désactive le bouton de pioche et active celui de la main
-            if (cardDeck == 8)
-            {
-                deck.Enabled = false;
-            }
-            //Peut montrer sa main que à partir de 5 carte
-            if (cardDeck > 3)
-            {
-                showHand.Enabled = true;
-            }//end if 
-            playerInGame = Convert.ToInt32(choosePlayer.Text.ToString());
-            
-            //Place la valeur dans la tableau
-            playerValues[playerInGame-1,cardDeck] = ValueOfCard;
+                //Choisi quel valeur va être changé
+                int wichCardChange = RandomNumber(1, 8);
+                //Génère une nouvelle valeur
+                int newValue = RandomNumber(-8, 8);
 
-            
-            switch (i)
-            {
-                case 0:
-                    card1.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-                    break;
-                case 1:
-                    card2.Text = Convert.ToString(playerValues[playerInGame - 1, 1]);
-                    break;
-                case 2:
-                    card3.Text = Convert.ToString(playerValues[playerInGame - 1, 2]);
-                    break;
-                case 3:
-                    card4.Text = Convert.ToString(playerValues[playerInGame - 1, 3]);
-                    break;
-                case 4:
-                    card5.Text = Convert.ToString(playerValues[playerInGame - 1, 4]);
-                    break;
-                case 5:
-                    card6.Text = Convert.ToString(playerValues[playerInGame - 1, 5]);
-                    break;
-                case 6:
-                    card7.Text = Convert.ToString(playerValues[playerInGame - 1, 6]);
-                    break;
-                case 7:
-                    card8.Text = Convert.ToString(playerValues[playerInGame - 1, 7]);
-                    break;
-            }
-            i++;
+                //Sauvegarde la nouvelle valeur et l'affiche dans la bonne case
+                switch (wichCardChange)
+                {
+                    case 0:
+                        playerValues[playerInGame,0] = Convert.ToString(newValue);
+                        card1.Text = Convert.ToString(newValue);
+                        break;
+                    case 1:
+                        playerValues[playerInGame, 1] = Convert.ToString(newValue);
+                        card2.Text = Convert.ToString(newValue);
+                        break;
+                    case 2:
+                        playerValues[playerInGame, 2] = Convert.ToString(newValue);
+                        card3.Text = Convert.ToString(newValue);
+                        break;
+                    case 3:
+                        playerValues[playerInGame, 3] = Convert.ToString(newValue);
+                        card4.Text = Convert.ToString(newValue);
+                        break;
+                    case 4:
+                        playerValues[playerInGame, 4] = Convert.ToString(newValue);
+                        card5.Text = Convert.ToString(newValue);
+                        break;
+                    case 5:
+                        playerValues[playerInGame, 5] = Convert.ToString(newValue);
+                        card6.Text = Convert.ToString(newValue);
+                        break;
+                    case 6:
+                        playerValues[playerInGame, 6] = Convert.ToString(newValue);
+                        card7.Text = Convert.ToString(newValue);
+                        break;
+                    case 7:
+                        playerValues[playerInGame, 7] = Convert.ToString(newValue);
+                        card8.Text = Convert.ToString(newValue);
+                        break;
+                }//end switch
+            }//end if
+            else
+            {                                      
+                ValueOfCard = carteValue.cardValue();
+                //Appel la méthode pour obtenir une valeur
+                carteValue.Deck(ValueOfCard,allCards,cardDeck);
+                //Compte le nombre de zéro
+                if (ValueOfCard == 0)
+                {
+                    zeroGet++;
+                }
+                if (zeroGet == 3)
+                {
+                    ValueOfCard = ValueOfCard + cardDeck;
+                }
+                allCards++;
+                //Désactive le bouton de pioche et active celui de la main
+                if (cardDeck == 7)
+                {
+                    deck.Enabled = false;
+                }
+                //Peut montrer sa main que à partir de 5 carte
+                if (cardDeck > 3)
+                {
+                    showHand.Enabled = true;
+                }//end if 
+                playerInGame = Convert.ToInt32(choosePlayer.Text.ToString());
 
+                //Place la valeur dans la tableau
+                if (ValueOfCard == 0)
+                {
+                    playerValues[playerInGame - 1, cardDeck] = "IDIOT";
+                }
+                else
+                {
+                    playerValues[playerInGame - 1, cardDeck] = Convert.ToString(ValueOfCard);
+                }
+            
+                //affiche la valeur dans la bonne carte
+                switch (i)
+                {
+                    case 0:
+                            card1.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
+                        break;
+                    case 1:
+                            card2.Text = Convert.ToString(playerValues[playerInGame - 1, 1]);
+                        break;
+                    case 2:
+                            card3.Text = Convert.ToString(playerValues[playerInGame - 1, 2]);
+                        break;
+                    case 3:
+                            card4.Text = Convert.ToString(playerValues[playerInGame - 1, 3]);
+                        break;
+                    case 4:
+                            card5.Text = Convert.ToString(playerValues[playerInGame - 1, 4]);
+                        break;
+                    case 5:
+                            card6.Text = Convert.ToString(playerValues[playerInGame - 1, 5]);
+                        break;
+                    case 6:
+                            card7.Text = Convert.ToString(playerValues[playerInGame - 1, 6]);
+                        break;
+                    case 7:
+                            card8.Text = Convert.ToString(playerValues[playerInGame - 1, 7]);
+                        break;
+                }//end switch
+                //Indique le nombre de carte piochées
+                cardDeck++;
+                i++;
+            }//end else
         }//end deckClick
 
         /// <summary>
@@ -140,35 +196,43 @@ namespace Sabacc
         /// <param name="e"></param>
         private void nextPlayer_Click(object sender, EventArgs e)
         {
+            //Remet les varibles à 0 pour que le joueur suivant puisse piocher
+            cardDeck = 0;
+            i = 0;
+
             //Limite le nombre de joueur au nombre de joueur choisi
             if (counter <= numberOfPlayer)
             {
                 this.choosePlayer.SelectedIndex = playerInGame++;
                 diceResult.Text = null;
                 DicePtc.Enabled = true;
-                deck.Enabled = true;
+                deck.Enabled = false;
                 showHand.Enabled = false;
 
             }// end if
+
             //Recommence le tour
             else
             {
+                diceResult.Text = null;
+                DicePtc.Enabled = true;
+                deck.Enabled = false;
+                showHand.Enabled = false;
+
                 this.choosePlayer.SelectedIndex = 0;
-                counter = 0;
-                playerInGame = 0;
-            }
+                counter = 1;
+                playerInGame = 1;
+            }//end else
 
-            card1.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card2.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card3.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card4.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card5.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card6.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card7.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-            card8.Text = Convert.ToString(playerValues[playerInGame - 1, 0]);
-
-
-
+            //Remet les valeur du joueur dans les cartes
+            card1.Text = playerValues[playerInGame - 1, 0];
+            card2.Text = playerValues[playerInGame - 1, 1];
+            card3.Text = playerValues[playerInGame - 1, 2];
+            card4.Text = playerValues[playerInGame - 1, 3];
+            card5.Text = playerValues[playerInGame - 1, 4];
+            card6.Text = playerValues[playerInGame - 1, 5];
+            card7.Text = playerValues[playerInGame - 1, 6];
+            card8.Text = playerValues[playerInGame - 1, 7];
 
             counter++;
             
@@ -181,11 +245,14 @@ namespace Sabacc
         /// <param name="e"></param>
         private void DicePtc_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            dice = random.Next(1, 6);
 
-            int returnValue = RandomNumber(1, 3); ///////////////////////////
+            //Génère une valeur de 1 à 6
+            Random random = new Random();
+            //dice = random.Next(1, 6);
+
+            int returnValue = RandomNumber(1, 3);
             
+            //affiche le résultat du dé
             diceResult.Text = Convert.ToString(returnValue);
         
             //Si l'utilisateur obtient moins de 4 le joueur peut pioché
@@ -202,7 +269,75 @@ namespace Sabacc
                 }
             }
             DicePtc.Enabled = false;
+        }//end Dice_Click
+
+        /// <summary>
+        /// Affiche les mains des joueurs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void showHand_Click(object sender, EventArgs e)
+        {
+
+            Panel panel = new Panel();
+            panel.Width = 20;
+            panel.Height = 20;
+            panel.BackColor = Color.Black;
+            for (int y = 0; y < 5; y++)
+            {
+                for (int z = 0; z < 8; z++)
+                {
+                    TextBox test = new TextBox();
+            
+                    test.Text = playerValues[y, z];
+                    test.Controls.Add(panel);
+                }
+            }
+            //Result(playerValues);
+
+            recapHands recap = new recapHands(playerValues);
+            recap.Visible = true;
+
+        }//end showHand
+
+
+        private void Result(string[,] playervalues)
+        {
+            this.playerValues = playervalues;
+
+            for (int y =0;y < 5 ;y++)
+            {
+                for (int z = 0;z<8;z++)
+                {
+                    //test.Text = playervalues[y, z];
+                }
+            }
         }
 
+        /// <summary>
+        /// Timer pour changer la valeur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timerChangeValue_Tick(object sender, EventArgs e)
+        {
+            time++;
+            if (time > 60)
+            {
+                //Choisi quel valeur va être changé
+                int wichCardChange = RandomNumber(1, 8);
+                //jeu de mot de fabian
+                int wichCardChangeToo = RandomNumber(1, 5);
+                //Génère une nouvelle valeur
+                int newValue = RandomNumber(-8, 8);
+
+                //Met le chiffre 
+                playerValues[wichCardChange, wichCardChangeToo] = Convert.ToString(newValue);
+
+                time = 0;
+                MessageBox.Show("test");
+            }
+                       
+        }
     }//end PlayerForm
 }

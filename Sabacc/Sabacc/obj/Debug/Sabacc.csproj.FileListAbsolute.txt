@@ -18,3 +18,4 @@ H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.Sabacc.resources
 H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.resources
 H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.Properties.Resources.resources
 H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.csproj.GenerateResource.Cache
+H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.recapHands.resources

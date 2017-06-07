@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.deck = new System.Windows.Forms.Button();
             this.showHand = new System.Windows.Forms.Button();
             this.Numpoint = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.card6 = new System.Windows.Forms.Button();
             this.card7 = new System.Windows.Forms.Button();
             this.card8 = new System.Windows.Forms.Button();
+            this.timerChangeValue = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,6 +69,7 @@
             this.showHand.TabIndex = 2;
             this.showHand.Text = "Montrer sa main";
             this.showHand.UseVisualStyleBackColor = true;
+            this.showHand.Click += new System.EventHandler(this.showHand_Click);
             // 
             // Numpoint
             // 
@@ -128,7 +131,7 @@
             // card1
             // 
             this.card1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card1.Location = new System.Drawing.Point(256, 62);
+            this.card1.Location = new System.Drawing.Point(178, 62);
             this.card1.Name = "card1";
             this.card1.Size = new System.Drawing.Size(66, 94);
             this.card1.TabIndex = 11;
@@ -138,7 +141,7 @@
             // card2
             // 
             this.card2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card2.Location = new System.Drawing.Point(328, 62);
+            this.card2.Location = new System.Drawing.Point(276, 62);
             this.card2.Name = "card2";
             this.card2.Size = new System.Drawing.Size(66, 94);
             this.card2.TabIndex = 12;
@@ -148,7 +151,7 @@
             // card3
             // 
             this.card3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card3.Location = new System.Drawing.Point(400, 62);
+            this.card3.Location = new System.Drawing.Point(372, 62);
             this.card3.Name = "card3";
             this.card3.Size = new System.Drawing.Size(66, 94);
             this.card3.TabIndex = 13;
@@ -168,7 +171,7 @@
             // card5
             // 
             this.card5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card5.Location = new System.Drawing.Point(256, 162);
+            this.card5.Location = new System.Drawing.Point(178, 162);
             this.card5.Name = "card5";
             this.card5.Size = new System.Drawing.Size(66, 94);
             this.card5.TabIndex = 15;
@@ -178,7 +181,7 @@
             // card6
             // 
             this.card6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card6.Location = new System.Drawing.Point(328, 162);
+            this.card6.Location = new System.Drawing.Point(276, 162);
             this.card6.Name = "card6";
             this.card6.Size = new System.Drawing.Size(66, 94);
             this.card6.TabIndex = 16;
@@ -188,7 +191,7 @@
             // card7
             // 
             this.card7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card7.Location = new System.Drawing.Point(400, 162);
+            this.card7.Location = new System.Drawing.Point(372, 162);
             this.card7.Name = "card7";
             this.card7.Size = new System.Drawing.Size(66, 94);
             this.card7.TabIndex = 17;
@@ -204,6 +207,11 @@
             this.card8.TabIndex = 18;
             this.card8.Tag = "";
             this.card8.UseVisualStyleBackColor = true;
+            // 
+            // timerChangeValue
+            // 
+            this.timerChangeValue.Interval = 1000;
+            this.timerChangeValue.Tick += new System.EventHandler(this.timerChangeValue_Tick);
             // 
             // PlayersForms
             // 
@@ -249,5 +257,6 @@
         public System.Windows.Forms.Button card7;
         public System.Windows.Forms.Button card8;
         public System.Windows.Forms.Button card4;
+        private System.Windows.Forms.Timer timerChangeValue;
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Sabacc
@@ -54,6 +55,11 @@ namespace Sabacc
                 card.Text = Convert.ToString(CardSValue);
             }
             return CardSValue;
+        }
+
+        public void changeValueCard()
+        {
+
         }
 
     }

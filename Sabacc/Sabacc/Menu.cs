@@ -32,7 +32,6 @@ namespace Sabacc
             //Crée le premier joueur
             PlayersForms PlayersForms = new PlayersForms(numberOfPlayer);
             PlayersForms.Visible = true;
-            PlayersForms.Text = "Joueur 1";
             this.Hide();
         }//end StartPlay
     }
