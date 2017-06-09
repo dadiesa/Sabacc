@@ -17,13 +17,12 @@ namespace Sabacc
         public string[,] playerValues;
         //Constante
         const int numOfCard = 1;
-        //Variables                
-        int dice;
+        //Variables
         int allCards = 2;
         int zeroGet = 0;
-        int time = 0;
+        static int turn = 0;
         static int i = 0;
-        static int playerInGame = 0;
+        static int playerInGame = 1;
         static int counter = 2;
         static int ValueOfCard;
         static int cardDeck;
@@ -50,6 +49,8 @@ namespace Sabacc
 
             playerValues = new string[5, 9];
             playerValues[0, 0] = Convert.ToString(ValueOfCard);
+
+            namePlayer.Text = "Joueur 1";
         }//end PlayerForm
 
 
@@ -196,21 +197,19 @@ namespace Sabacc
         /// <param name="e"></param>
         private void nextPlayer_Click(object sender, EventArgs e)
         {
+
             //Remet les varibles à 0 pour que le joueur suivant puisse piocher
             cardDeck = 0;
             i = 0;
-
             //Limite le nombre de joueur au nombre de joueur choisi
             if (counter <= numberOfPlayer)
             {
-                this.choosePlayer.SelectedIndex = playerInGame++;
+                this.choosePlayer.SelectedIndex = playerInGame++; /*_____________________*/
                 diceResult.Text = null;
                 DicePtc.Enabled = true;
                 deck.Enabled = false;
                 showHand.Enabled = false;
-
             }// end if
-
             //Recommence le tour
             else
             {
@@ -222,7 +221,13 @@ namespace Sabacc
                 this.choosePlayer.SelectedIndex = 0;
                 counter = 1;
                 playerInGame = 1;
+                turn++;
             }//end else
+
+            if(turn == 2)
+            {
+                showHand.Enabled = true;
+            }
 
             //Remet les valeur du joueur dans les cartes
             card1.Text = playerValues[playerInGame - 1, 0];
@@ -233,6 +238,9 @@ namespace Sabacc
             card6.Text = playerValues[playerInGame - 1, 5];
             card7.Text = playerValues[playerInGame - 1, 6];
             card8.Text = playerValues[playerInGame - 1, 7];
+
+
+            namePlayer.Text = "Joueur " + playerInGame;
 
             counter++;
             
@@ -250,7 +258,7 @@ namespace Sabacc
             Random random = new Random();
             //dice = random.Next(1, 6);
 
-            int returnValue = RandomNumber(1, 3);
+            int returnValue = RandomNumber(1, 6);
             
             //affiche le résultat du dé
             diceResult.Text = Convert.ToString(returnValue);
@@ -260,13 +268,10 @@ namespace Sabacc
             {
                 deck.Enabled = true;
             }
-            else if (returnValue < 3)
+            else
             {
-                //Ne peut montrer sa main que si l'utilisateur à 5 cartes6
-                if (allCards > 3)
-                {
-                    showHand.Enabled = true;
-                }
+                titleChooseCard.Visible = true;
+                chooseCard.Visible = true;
             }
             DicePtc.Enabled = false;
         }//end Dice_Click
@@ -300,7 +305,10 @@ namespace Sabacc
 
         }//end showHand
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playervalues"></param>
         private void Result(string[,] playervalues)
         {
             this.playerValues = playervalues;
@@ -315,14 +323,30 @@ namespace Sabacc
         }
 
         /// <summary>
+        /// Permet de choisir la carte à visualisé
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chooseCard_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Rend la carte visible
+            enemyCard.Visible = true;
+            //Vas chercher la valeur
+            string Value = playerValues[playerInGame, Convert.ToInt32(chooseCard.Text.ToString()) - 1];
+            //affiche la valeur
+            enemyCard.Text = Value;
+            chooseCard.Visible = false;
+        }
+
+        /// <summary>
         /// Timer pour changer la valeur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerChangeValue_Tick(object sender, EventArgs e)
+        /*private void timerChangeValue_Tick(object sender, EventArgs e)
         {
             time++;
-            if (time > 60)
+            if (time > 70)
             {
                 //Choisi quel valeur va être changé
                 int wichCardChange = RandomNumber(1, 8);
@@ -338,6 +362,6 @@ namespace Sabacc
                 MessageBox.Show("test");
             }
                        
-        }
+        }*/
     }//end PlayerForm
 }

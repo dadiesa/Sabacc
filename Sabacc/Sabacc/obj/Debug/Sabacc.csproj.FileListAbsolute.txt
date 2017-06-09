@@ -19,3 +19,6 @@ H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.resources
 H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.Properties.Resources.resources
 H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.csproj.GenerateResource.Cache
 H:\Démomot\Sabacc\Sabacc\obj\Debug\Sabacc.recapHands.resources
+D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\bin\Debug\Sabacc.exe.config
+D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\obj\Debug\Sabacc.exe
+D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\obj\Debug\Sabacc.pdb

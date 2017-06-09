@@ -39,27 +39,17 @@ namespace Sabacc
                 this.CardSValue = valueOfCard;
                 this.allCards = allCards;
             
-                Button card = new Button();
-                card.Font = new Font(card.Font.Name, 20);
-                card.Size = new System.Drawing.Size(100, 100);
-
-                card.Location = new Point(120 * j, 125);
-
-               // PlayersForms.ActiveForm.Controls.Add(card);
-            if (valueOfCard == 0)
-            {
-                card.Text = "idiot";
-            }
-            else
-            {
-                card.Text = Convert.ToString(CardSValue);
-            }
             return CardSValue;
         }
 
         public void changeValueCard()
         {
 
+        }
+
+        public void seeAdvCard(int playerToSpy,int carteToSpy)
+        {
+            
         }
 
     }

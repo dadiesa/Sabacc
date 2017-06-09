@@ -45,13 +45,17 @@
             this.card7 = new System.Windows.Forms.Button();
             this.card8 = new System.Windows.Forms.Button();
             this.timerChangeValue = new System.Windows.Forms.Timer(this.components);
+            this.enemyCard = new System.Windows.Forms.Button();
+            this.chooseCard = new System.Windows.Forms.ComboBox();
+            this.titleChooseCard = new System.Windows.Forms.Label();
+            this.namePlayer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).BeginInit();
             this.SuspendLayout();
             // 
             // deck
             // 
             this.deck.Enabled = false;
-            this.deck.Location = new System.Drawing.Point(12, 260);
+            this.deck.Location = new System.Drawing.Point(16, 305);
             this.deck.Name = "deck";
             this.deck.Size = new System.Drawing.Size(170, 59);
             this.deck.TabIndex = 1;
@@ -63,7 +67,7 @@
             // showHand
             // 
             this.showHand.Enabled = false;
-            this.showHand.Location = new System.Drawing.Point(621, 260);
+            this.showHand.Location = new System.Drawing.Point(625, 305);
             this.showHand.Name = "showHand";
             this.showHand.Size = new System.Drawing.Size(170, 59);
             this.showHand.TabIndex = 2;
@@ -75,7 +79,7 @@
             // 
             this.Numpoint.AutoSize = true;
             this.Numpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.Numpoint.Location = new System.Drawing.Point(631, 30);
+            this.Numpoint.Location = new System.Drawing.Point(631, 12);
             this.Numpoint.Name = "Numpoint";
             this.Numpoint.Size = new System.Drawing.Size(68, 20);
             this.Numpoint.TabIndex = 6;
@@ -83,7 +87,7 @@
             // 
             // nextPlayer
             // 
-            this.nextPlayer.Location = new System.Drawing.Point(315, 329);
+            this.nextPlayer.Location = new System.Drawing.Point(360, 368);
             this.nextPlayer.Name = "nextPlayer";
             this.nextPlayer.Size = new System.Drawing.Size(133, 53);
             this.nextPlayer.TabIndex = 7;
@@ -123,15 +127,16 @@
             "3",
             "4",
             "5"});
-            this.choosePlayer.Location = new System.Drawing.Point(635, 81);
+            this.choosePlayer.Location = new System.Drawing.Point(30, 116);
             this.choosePlayer.Name = "choosePlayer";
             this.choosePlayer.Size = new System.Drawing.Size(121, 21);
             this.choosePlayer.TabIndex = 10;
+            this.choosePlayer.Visible = false;
             // 
             // card1
             // 
             this.card1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card1.Location = new System.Drawing.Point(178, 62);
+            this.card1.Location = new System.Drawing.Point(233, 98);
             this.card1.Name = "card1";
             this.card1.Size = new System.Drawing.Size(66, 94);
             this.card1.TabIndex = 11;
@@ -141,7 +146,7 @@
             // card2
             // 
             this.card2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card2.Location = new System.Drawing.Point(276, 62);
+            this.card2.Location = new System.Drawing.Point(331, 98);
             this.card2.Name = "card2";
             this.card2.Size = new System.Drawing.Size(66, 94);
             this.card2.TabIndex = 12;
@@ -151,7 +156,7 @@
             // card3
             // 
             this.card3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card3.Location = new System.Drawing.Point(372, 62);
+            this.card3.Location = new System.Drawing.Point(427, 98);
             this.card3.Name = "card3";
             this.card3.Size = new System.Drawing.Size(66, 94);
             this.card3.TabIndex = 13;
@@ -161,7 +166,7 @@
             // card4
             // 
             this.card4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card4.Location = new System.Drawing.Point(472, 62);
+            this.card4.Location = new System.Drawing.Point(527, 98);
             this.card4.Name = "card4";
             this.card4.Size = new System.Drawing.Size(66, 94);
             this.card4.TabIndex = 14;
@@ -171,7 +176,7 @@
             // card5
             // 
             this.card5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card5.Location = new System.Drawing.Point(178, 162);
+            this.card5.Location = new System.Drawing.Point(233, 198);
             this.card5.Name = "card5";
             this.card5.Size = new System.Drawing.Size(66, 94);
             this.card5.TabIndex = 15;
@@ -181,7 +186,7 @@
             // card6
             // 
             this.card6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card6.Location = new System.Drawing.Point(276, 162);
+            this.card6.Location = new System.Drawing.Point(331, 198);
             this.card6.Name = "card6";
             this.card6.Size = new System.Drawing.Size(66, 94);
             this.card6.TabIndex = 16;
@@ -191,7 +196,7 @@
             // card7
             // 
             this.card7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card7.Location = new System.Drawing.Point(372, 162);
+            this.card7.Location = new System.Drawing.Point(427, 198);
             this.card7.Name = "card7";
             this.card7.Size = new System.Drawing.Size(66, 94);
             this.card7.TabIndex = 17;
@@ -201,7 +206,7 @@
             // card8
             // 
             this.card8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.card8.Location = new System.Drawing.Point(472, 162);
+            this.card8.Location = new System.Drawing.Point(527, 198);
             this.card8.Name = "card8";
             this.card8.Size = new System.Drawing.Size(66, 94);
             this.card8.TabIndex = 18;
@@ -211,13 +216,68 @@
             // timerChangeValue
             // 
             this.timerChangeValue.Interval = 1000;
-            this.timerChangeValue.Tick += new System.EventHandler(this.timerChangeValue_Tick);
+            // 
+            // enemyCard
+            // 
+            this.enemyCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.enemyCard.Location = new System.Drawing.Point(691, 162);
+            this.enemyCard.Name = "enemyCard";
+            this.enemyCard.Size = new System.Drawing.Size(66, 94);
+            this.enemyCard.TabIndex = 19;
+            this.enemyCard.Tag = "";
+            this.enemyCard.UseVisualStyleBackColor = true;
+            this.enemyCard.Visible = false;
+            // 
+            // chooseCard
+            // 
+            this.chooseCard.BackColor = System.Drawing.SystemColors.Window;
+            this.chooseCard.DisplayMember = "2";
+            this.chooseCard.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chooseCard.FormattingEnabled = true;
+            this.chooseCard.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.chooseCard.Location = new System.Drawing.Point(660, 116);
+            this.chooseCard.Name = "chooseCard";
+            this.chooseCard.Size = new System.Drawing.Size(121, 21);
+            this.chooseCard.TabIndex = 20;
+            this.chooseCard.Visible = false;
+            this.chooseCard.SelectedIndexChanged += new System.EventHandler(this.chooseCard_SelectedIndexChanged);
+            // 
+            // titleChooseCard
+            // 
+            this.titleChooseCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.titleChooseCard.Location = new System.Drawing.Point(640, 71);
+            this.titleChooseCard.Name = "titleChooseCard";
+            this.titleChooseCard.Size = new System.Drawing.Size(172, 42);
+            this.titleChooseCard.TabIndex = 21;
+            this.titleChooseCard.Text = "Quelle carte adverse voulez vous voir";
+            this.titleChooseCard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titleChooseCard.Visible = false;
+            // 
+            // namePlayer
+            // 
+            this.namePlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.namePlayer.Location = new System.Drawing.Point(291, 25);
+            this.namePlayer.Name = "namePlayer";
+            this.namePlayer.Size = new System.Drawing.Size(271, 42);
+            this.namePlayer.TabIndex = 22;
+            this.namePlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PlayersForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 394);
+            this.ClientSize = new System.Drawing.Size(840, 450);
+            this.Controls.Add(this.namePlayer);
+            this.Controls.Add(this.titleChooseCard);
+            this.Controls.Add(this.chooseCard);
+            this.Controls.Add(this.enemyCard);
             this.Controls.Add(this.card8);
             this.Controls.Add(this.card7);
             this.Controls.Add(this.card6);
@@ -234,7 +294,7 @@
             this.Controls.Add(this.showHand);
             this.Controls.Add(this.deck);
             this.Name = "PlayersForms";
-            this.Text = "PlayersForms";
+            this.Text = "6";
             ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -258,5 +318,9 @@
         public System.Windows.Forms.Button card8;
         public System.Windows.Forms.Button card4;
         private System.Windows.Forms.Timer timerChangeValue;
+        public System.Windows.Forms.Button enemyCard;
+        private System.Windows.Forms.ComboBox chooseCard;
+        private System.Windows.Forms.Label titleChooseCard;
+        private System.Windows.Forms.Label namePlayer;
     }
 }
