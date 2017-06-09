@@ -20,11 +20,19 @@ namespace Sabacc
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
-        public int cardValue()
+        public int cardValue(int zeroGet)
         {
 
             Random random = new Random();
-            return (random.Next(-8,8));
+            int Value = random.Next(-8, 8);
+
+            if (zeroGet >= 3) {
+                while (Value == 0)
+                {
+                    Value = random.Next(-8, 8);
+                }
+            }
+            return Value;
         }//end card
 
         /// <summary>

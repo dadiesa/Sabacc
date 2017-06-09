@@ -19,7 +19,7 @@ namespace Sabacc
         const int numOfCard = 1;
         //Variables
         int allCards = 2;
-        int zeroGet = 0;
+        static int zeroGet = 0;
         static int turn = 0;
         static int i = 0;
         static int playerInGame = 1;
@@ -39,14 +39,16 @@ namespace Sabacc
         {
             InitializeComponent();
 
+            //Démar le compteur qui va changer une valeur aléatoire à un moment donné
             timerChangeValue.Start();
             
             this.choosePlayer.SelectedIndex = 0;
             this.numberOfPlayer = numberOfPlayer; 
 
             //Prend une valeur aléatoire pour la carte
-            ValueOfCard = carteValue.cardValue();
+            ValueOfCard = carteValue.cardValue(zeroGet);
 
+            //Crée un tableau pour stocker les valeurss
             playerValues = new string[5, 9];
             playerValues[0, 0] = Convert.ToString(ValueOfCard);
 
@@ -121,7 +123,7 @@ namespace Sabacc
             }//end if
             else
             {                                      
-                ValueOfCard = carteValue.cardValue();
+                ValueOfCard = carteValue.cardValue(zeroGet);
                 //Appel la méthode pour obtenir une valeur
                 carteValue.Deck(ValueOfCard,allCards,cardDeck);
                 //Compte le nombre de zéro
@@ -129,6 +131,7 @@ namespace Sabacc
                 {
                     zeroGet++;
                 }
+                //Si il y a plus de trois zéro pioché alors on ne peut plus ioché de zéro
                 if (zeroGet == 3)
                 {
                     ValueOfCard = ValueOfCard + cardDeck;
@@ -242,6 +245,12 @@ namespace Sabacc
 
             namePlayer.Text = "Joueur " + playerInGame;
 
+
+            titleChooseCard.Visible = false;
+            chooseCard.Visible = false;
+            enemyCard.Visible = false;
+            DicePtc.BackColor = Color.Empty;
+
             counter++;
             
         }//end nextPlayerClick
@@ -274,6 +283,7 @@ namespace Sabacc
                 chooseCard.Visible = true;
             }
             DicePtc.Enabled = false;
+            DicePtc.BackColor = Color.Red;
         }//end Dice_Click
 
         /// <summary>
@@ -306,23 +316,6 @@ namespace Sabacc
         }//end showHand
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="playervalues"></param>
-        private void Result(string[,] playervalues)
-        {
-            this.playerValues = playervalues;
-
-            for (int y =0;y < 5 ;y++)
-            {
-                for (int z = 0;z<8;z++)
-                {
-                    //test.Text = playervalues[y, z];
-                }
-            }
-        }
-
-        /// <summary>
         /// Permet de choisir la carte à visualisé
         /// </summary>
         /// <param name="sender"></param>
@@ -331,8 +324,18 @@ namespace Sabacc
         {
             //Rend la carte visible
             enemyCard.Visible = true;
-            //Vas chercher la valeur
-            string Value = playerValues[playerInGame, Convert.ToInt32(chooseCard.Text.ToString()) - 1];
+
+            string Value;
+
+            //Vas chercher la valeur(
+            if (playerInGame != 1)
+            {
+                Value = playerValues[playerInGame - 2, Convert.ToInt32(chooseCard.Text.ToString()) - 1];
+            }
+            else
+            {
+                Value = playerValues[numberOfPlayer-1, Convert.ToInt32(chooseCard.Text.ToString()) -1];
+            }
             //affiche la valeur
             enemyCard.Text = Value;
             chooseCard.Visible = false;
