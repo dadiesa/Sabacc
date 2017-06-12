@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.deck = new System.Windows.Forms.Button();
             this.showHand = new System.Windows.Forms.Button();
-            this.Numpoint = new System.Windows.Forms.Label();
+            this.titleNumpoint = new System.Windows.Forms.Label();
             this.nextPlayer = new System.Windows.Forms.Button();
             this.DicePtc = new System.Windows.Forms.PictureBox();
             this.diceResult = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.chooseCard = new System.Windows.Forms.ComboBox();
             this.titleChooseCard = new System.Windows.Forms.Label();
             this.namePlayer = new System.Windows.Forms.Label();
+            this.NumPoint = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,15 +76,15 @@
             this.showHand.UseVisualStyleBackColor = true;
             this.showHand.Click += new System.EventHandler(this.showHand_Click);
             // 
-            // Numpoint
+            // titleNumpoint
             // 
-            this.Numpoint.AutoSize = true;
-            this.Numpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.Numpoint.Location = new System.Drawing.Point(631, 12);
-            this.Numpoint.Name = "Numpoint";
-            this.Numpoint.Size = new System.Drawing.Size(68, 20);
-            this.Numpoint.TabIndex = 6;
-            this.Numpoint.Text = "Point(s)";
+            this.titleNumpoint.AutoSize = true;
+            this.titleNumpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.titleNumpoint.Location = new System.Drawing.Point(631, 12);
+            this.titleNumpoint.Name = "titleNumpoint";
+            this.titleNumpoint.Size = new System.Drawing.Size(68, 20);
+            this.titleNumpoint.TabIndex = 6;
+            this.titleNumpoint.Text = "Point(s)";
             // 
             // nextPlayer
             // 
@@ -269,11 +270,21 @@
             this.namePlayer.TabIndex = 22;
             this.namePlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // NumPoint
+            // 
+            this.NumPoint.AutoSize = true;
+            this.NumPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.NumPoint.Location = new System.Drawing.Point(713, 12);
+            this.NumPoint.Name = "NumPoint";
+            this.NumPoint.Size = new System.Drawing.Size(0, 20);
+            this.NumPoint.TabIndex = 23;
+            // 
             // PlayersForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 450);
+            this.Controls.Add(this.NumPoint);
             this.Controls.Add(this.namePlayer);
             this.Controls.Add(this.titleChooseCard);
             this.Controls.Add(this.chooseCard);
@@ -290,7 +301,7 @@
             this.Controls.Add(this.diceResult);
             this.Controls.Add(this.DicePtc);
             this.Controls.Add(this.nextPlayer);
-            this.Controls.Add(this.Numpoint);
+            this.Controls.Add(this.titleNumpoint);
             this.Controls.Add(this.showHand);
             this.Controls.Add(this.deck);
             this.Name = "PlayersForms";
@@ -304,7 +315,7 @@
         #endregion
         private System.Windows.Forms.Button deck;
         public System.Windows.Forms.Button showHand;
-        private System.Windows.Forms.Label Numpoint;
+        private System.Windows.Forms.Label titleNumpoint;
         private System.Windows.Forms.Button nextPlayer;
         private System.Windows.Forms.PictureBox DicePtc;
         private System.Windows.Forms.Label diceResult;
@@ -322,5 +333,6 @@
         private System.Windows.Forms.ComboBox chooseCard;
         private System.Windows.Forms.Label titleChooseCard;
         private System.Windows.Forms.Label namePlayer;
+        private System.Windows.Forms.Label NumPoint;
     }
 }

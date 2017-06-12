@@ -14,7 +14,8 @@ namespace Sabacc
     public partial class PlayersForms : Form
     {
         
-        public string[,] playerValues;
+        static public string[,] playerValues;
+        public int[] playerPoints;
         //Constante
         const int numOfCard = 1;
         //Variables
@@ -50,9 +51,13 @@ namespace Sabacc
 
             //Crée un tableau pour stocker les valeurss
             playerValues = new string[5, 9];
-            playerValues[0, 0] = Convert.ToString(ValueOfCard);
+
+            //Crée un tableau pour stocker les points
+            playerPoints = new int[5];
 
             namePlayer.Text = "Joueur 1";
+            NumPoint.Text = Convert.ToString(playerPoints[playerInGame - 1]);
+
         }//end PlayerForm
 
 
@@ -84,42 +89,48 @@ namespace Sabacc
                 //Génère une nouvelle valeur
                 int newValue = RandomNumber(-8, 8);
 
+                if (newValue == 0)
+                {
+                    newValue = Convert.ToInt32("IDIOT");
+                }
+
                 //Sauvegarde la nouvelle valeur et l'affiche dans la bonne case
                 switch (wichCardChange)
                 {
                     case 0:
-                        playerValues[playerInGame,0] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1,0] = Convert.ToString(newValue);
                         card1.Text = Convert.ToString(newValue);
                         break;
                     case 1:
-                        playerValues[playerInGame, 1] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 1] = Convert.ToString(newValue);
                         card2.Text = Convert.ToString(newValue);
                         break;
                     case 2:
-                        playerValues[playerInGame, 2] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 2] = Convert.ToString(newValue);
                         card3.Text = Convert.ToString(newValue);
                         break;
                     case 3:
-                        playerValues[playerInGame, 3] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 3] = Convert.ToString(newValue);
                         card4.Text = Convert.ToString(newValue);
                         break;
                     case 4:
-                        playerValues[playerInGame, 4] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 4] = Convert.ToString(newValue);
                         card5.Text = Convert.ToString(newValue);
                         break;
                     case 5:
-                        playerValues[playerInGame, 5] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 5] = Convert.ToString(newValue);
                         card6.Text = Convert.ToString(newValue);
                         break;
                     case 6:
-                        playerValues[playerInGame, 6] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 6] = Convert.ToString(newValue);
                         card7.Text = Convert.ToString(newValue);
                         break;
                     case 7:
-                        playerValues[playerInGame, 7] = Convert.ToString(newValue);
+                        playerValues[playerInGame-1, 7] = Convert.ToString(newValue);
                         card8.Text = Convert.ToString(newValue);
                         break;
                 }//end switch
+                showHand.Enabled = true;
             }//end if
             else
             {                                      
@@ -244,6 +255,7 @@ namespace Sabacc
 
 
             namePlayer.Text = "Joueur " + playerInGame;
+            NumPoint.Text = Convert.ToString(playerPoints[playerInGame-1]);
 
 
             titleChooseCard.Visible = false;
@@ -310,8 +322,11 @@ namespace Sabacc
             }
             //Result(playerValues);
 
-            recapHands recap = new recapHands(playerValues);
+            recapHands recap = new recapHands(playerValues, numberOfPlayer,playerPoints);
             recap.Visible = true;
+
+            //récupère le nombre de point des joueurs
+            playerPoints = recap.SaveWinner(playerPoints);
 
         }//end showHand
 
