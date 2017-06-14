@@ -19,6 +19,7 @@ namespace Sabacc
         //Constante
         const int numOfCard = 1;
         //Variables
+        int time;
         int allCards = 2;
         static int zeroGet = 0;
         static int turn = 0;
@@ -81,17 +82,18 @@ namespace Sabacc
         /// <param name="e"></param>
         private void deck_Click(object sender, EventArgs e)
         {
+            
             //Si le joueur a piocher toutes les cartes une d'elles est remplacé par une nouvelle valeur
-            if (playerValues[playerInGame,7] != null )
+            if (playerValues[playerInGame-1,7] != null )
             {
                 //Choisi quel valeur va être changé
                 int wichCardChange = RandomNumber(1, 8);
                 //Génère une nouvelle valeur
-                int newValue = RandomNumber(-8, 8);
+                string newValue = Convert.ToString(RandomNumber(-8, 8));
 
-                if (newValue == 0)
+                if (newValue == "0")
                 {
-                    newValue = Convert.ToInt32("IDIOT");
+                    newValue = "IDIOT";
                 }
 
                 //Sauvegarde la nouvelle valeur et l'affiche dans la bonne case
@@ -99,35 +101,35 @@ namespace Sabacc
                 {
                     case 0:
                         playerValues[playerInGame-1,0] = Convert.ToString(newValue);
-                        card1.Text = Convert.ToString(newValue);
+                        card1.Text = newValue;
                         break;
                     case 1:
                         playerValues[playerInGame-1, 1] = Convert.ToString(newValue);
-                        card2.Text = Convert.ToString(newValue);
+                        card2.Text = newValue;
                         break;
                     case 2:
                         playerValues[playerInGame-1, 2] = Convert.ToString(newValue);
-                        card3.Text = Convert.ToString(newValue);
+                        card3.Text = newValue;
                         break;
                     case 3:
                         playerValues[playerInGame-1, 3] = Convert.ToString(newValue);
-                        card4.Text = Convert.ToString(newValue);
+                        card4.Text = newValue;
                         break;
                     case 4:
                         playerValues[playerInGame-1, 4] = Convert.ToString(newValue);
-                        card5.Text = Convert.ToString(newValue);
+                        card5.Text = newValue;
                         break;
                     case 5:
                         playerValues[playerInGame-1, 5] = Convert.ToString(newValue);
-                        card6.Text = Convert.ToString(newValue);
+                        card6.Text = newValue;
                         break;
                     case 6:
                         playerValues[playerInGame-1, 6] = Convert.ToString(newValue);
-                        card7.Text = Convert.ToString(newValue);
+                        card7.Text = newValue;
                         break;
                     case 7:
                         playerValues[playerInGame-1, 7] = Convert.ToString(newValue);
-                        card8.Text = Convert.ToString(newValue);
+                        card8.Text = newValue;
                         break;
                 }//end switch
                 showHand.Enabled = true;
@@ -277,8 +279,6 @@ namespace Sabacc
 
             //Génère une valeur de 1 à 6
             Random random = new Random();
-            //dice = random.Next(1, 6);
-
             int returnValue = RandomNumber(1, 6);
             
             //affiche le résultat du dé
@@ -314,10 +314,10 @@ namespace Sabacc
             {
                 for (int z = 0; z < 8; z++)
                 {
-                    TextBox test = new TextBox();
+                    TextBox allHands = new TextBox();
             
-                    test.Text = playerValues[y, z];
-                    test.Controls.Add(panel);
+                    allHands.Text = playerValues[y, z];
+                    allHands.Controls.Add(panel);
                 }
             }
             //Result(playerValues);
@@ -327,6 +327,8 @@ namespace Sabacc
 
             //récupère le nombre de point des joueurs
             playerPoints = recap.SaveWinner(playerPoints);
+
+            showHand.Enabled = false;
 
         }//end showHand
 
@@ -356,15 +358,16 @@ namespace Sabacc
             chooseCard.Visible = false;
         }
 
+
         /// <summary>
         /// Timer pour changer la valeur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /*private void timerChangeValue_Tick(object sender, EventArgs e)
+        private void timerChangeValue_Tick_1(object sender, EventArgs e)
         {
-            time++;
-            if (time > 70)
+            /*time++;
+            if (time > 10)
             {
                 //Choisi quel valeur va être changé
                 int wichCardChange = RandomNumber(1, 8);
@@ -377,9 +380,9 @@ namespace Sabacc
                 playerValues[wichCardChange, wichCardChangeToo] = Convert.ToString(newValue);
 
                 time = 0;
-                MessageBox.Show("test");
-            }
+                //MessageBox.Show("allHands");
+            }*/
                        
-        }*/
+        }
     }//end PlayerForm
 }

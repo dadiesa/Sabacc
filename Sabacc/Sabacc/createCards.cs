@@ -25,13 +25,13 @@ namespace Sabacc
 
             Random random = new Random();
             int Value = random.Next(-8, 8);
-
+            /*
             if (zeroGet >= 3) {
                 while (Value == 0)
                 {
                     Value = random.Next(-8, 8);
                 }
-            }
+            }*/
             return Value;
         }//end card
 

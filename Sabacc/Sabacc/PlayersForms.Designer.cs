@@ -217,6 +217,7 @@
             // timerChangeValue
             // 
             this.timerChangeValue.Interval = 1000;
+            this.timerChangeValue.Tick += new System.EventHandler(this.timerChangeValue_Tick_1);
             // 
             // enemyCard
             // 

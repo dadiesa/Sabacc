@@ -12,80 +12,128 @@ namespace Sabacc
 {
     public partial class recapHands : Form
     {
-        public int[] PlayersPoint = new int[5];
+        static public int[] PlayersPoint = new int[5];
+
+        /// <summary>
+        /// Affiche les cartes des joueurs et en déduit le gagnant
+        /// </summary>
+        /// <param name="recap">Toutes les cartes des joueurs</param>
+        /// <param name="numberOfPlayer">nombre de joueur</param>
+        /// <param name="playerPoints">Les points des joueurs actuel</param>
         public recapHands(string[,] recap, int numberOfPlayer, int[] playerPoints)
         {
             InitializeComponent();
-
-
-            this.PlayersPoint = playerPoints;
-
-            //int[,] PlayersPoint = new int[5, 2];
-            int[] HandOfEveryBody = new int[5];            
+            
+            PlayersPoint = playerPoints;
+            
+            //Varables
+            int[] HandOfEveryBody = new int[5];
             int playerTotal = 0;
             int roundWinner = 0;
             int tempWinner = 0;
-            tempWinner = HandOfEveryBody[0];
+            tempWinner = HandOfEveryBody[0];      
+            bool haveIdiot = false;
+            bool haveTwo = false;
+            bool haveThree = false;
+            bool winWith23 = false;
+
             //Création label
             for (int i = 0; i < numberOfPlayer; i++)
             {
-                //PlayersPoint[i] = i;
-
                 playerTotal = 0;
                 for (int j = 0; j < 8; j++)
                 {
-                    Label Carte = new Label();
+                    //Crée la case pour affiché les valeur de tous les joueurs
+                    Label Carte = new Label(); 
                     Carte.Size = new System.Drawing.Size(70, 70);
                     Carte.Location = new System.Drawing.Point(i * 86 + 52, j * 86 + 53);
                     this.Controls.Add(Carte);
                     Carte.BackgroundImage = null;
                     Carte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                    Carte.Text = recap[i,j];
+                    Carte.Text = recap[i, j];
 
-                    if (recap[i,j] == "IDIOT")
+                    //Si le joeur obtient o il est remplaçé par IDIOT
+                    if (recap[i, j] == "IDIOT" && haveIdiot == false)
                     {
                         playerTotal = playerTotal + 0;
+                        haveIdiot = true;
+                        j = 0;
                     }
-                    else
+                    else if (recap[i,j] != "IDIOT")
                     {
                         playerTotal = playerTotal + Convert.ToInt32(recap[i, j]);
                     }
+                                        
+                    //vérifie si le joueur a un idiot un 2 et un 3
+                    switch (recap[i, j])
+                    {
+                        case "IDIOT":
+                            haveIdiot = true;
+                            break;
+                        case "2":
+                            haveTwo = true;
+                            break;
+                        case "3":
+                            haveThree = true;
+                            break;
+                    }
 
-                    
                 }//end for
 
+                //Crée la case pour affiché le total des valeurs
                 Label comboPlayer = new Label();
                 comboPlayer.Size = new System.Drawing.Size(70, 70);
                 comboPlayer.Location = new System.Drawing.Point(i * 86 + 52, 735);
                 this.Controls.Add(comboPlayer);
                 comboPlayer.BackgroundImage = null;
-                comboPlayer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;                
+                comboPlayer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                 HandOfEveryBody[i] = playerTotal;
                 roundWinner = 0;
-                
 
-                if (i != 0)
+
+                //Si le joueur à un 2 un 3 et un IDIOT
+                if (haveIdiot && haveTwo && haveThree)
                 {
-                    //Sélectionne le gagnant de la manche
-                    if (HandOfEveryBody[i] > tempWinner && HandOfEveryBody[i] <= 23)
+                    comboPlayer.Text = "Total : " + Convert.ToString(playerTotal) + " Vainqueur";
+                    roundWinner = i;
+                    tempWinner = HandOfEveryBody[i];
+                    winWith23 = true;
+                }
+
+                //Sélectionne le gagnant de la manche
+                else
+                {
+                    //Si le joueur à le plus grand chiffre et qu'il est en dessous de 23 il gagne la manche
+                    if (HandOfEveryBody[i] > tempWinner && HandOfEveryBody[i] <= 23 && winWith23 == false)
                     {
                         roundWinner = i;
                         tempWinner = HandOfEveryBody[i];
                         comboPlayer.Text = "Total : " + Convert.ToString(playerTotal) + " Vainqueur";
-                        PlayersPoint[i] = + 1;                        
+
+                        //Ajout un point
+                        PlayersPoint[i] = PlayersPoint[i] + 1;
 
                     }
+                    //Sinon on affiche son total
                     else
                     {
                         comboPlayer.Text = "Total : " + Convert.ToString(playerTotal);
                     }
-                    
-                }//end if
-                else
-                {
-                    tempWinner = HandOfEveryBody[0];
-                    comboPlayer.Text = "Total : " + Convert.ToString(HandOfEveryBody[0]);
-                }         
+                    //Lors de la dernière boucle on revérifie la case 1
+                    if (i + 1 == numberOfPlayer)
+                    {
+                        //Si la case 1 est plus grande que le plus grande chiffre actuel le joueur 1 gagne la manche 
+                        if (tempWinner < HandOfEveryBody[0] && winWith23 == false)
+                        {
+                            comboPlayer.Text = "Total : " + Convert.ToString(playerTotal) + " Vainqueur";
+                        }//end if 1
+                    }//end if 2
+                }//end else
+
+                haveIdiot = false;
+                haveTwo = false;
+                haveThree = false;
+
             }//end for
         }//end recapHand
 
@@ -96,8 +144,6 @@ namespace Sabacc
         /// <returns></returns>
         public int[] SaveWinner(int[] playerPoints)
         {
-            
-
             return PlayersPoint;
         }
     }
