@@ -104,7 +104,7 @@ namespace Sabacc
                 else
                 {
                     //Si le joueur à le plus grand chiffre et qu'il est en dessous de 23 il gagne la manche
-                    if (HandOfEveryBody[i] > tempWinner && HandOfEveryBody[i] <= 23 && winWith23 == false)
+                    if (HandOfEveryBody[i] > tempWinner && HandOfEveryBody[i] <= 23 && HandOfEveryBody[i] > -23 && winWith23 == false)
                     {
                         roundWinner = i;
                         tempWinner = HandOfEveryBody[i];
@@ -117,6 +117,10 @@ namespace Sabacc
                     //Sinon on affiche son total
                     else
                     {
+                        if (HandOfEveryBody[i] > 23 || HandOfEveryBody[i] < -23)
+                        {
+                            PlayersPoint[i] = 0;
+                        }
                         comboPlayer.Text = "Total : " + Convert.ToString(playerTotal);
                     }
                     //Lors de la dernière boucle on revérifie la case 1

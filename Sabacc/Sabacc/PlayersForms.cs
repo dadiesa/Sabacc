@@ -213,6 +213,7 @@ namespace Sabacc
         /// <param name="e"></param>
         private void nextPlayer_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
             //Remet les varibles à 0 pour que le joueur suivant puisse piocher
             cardDeck = 0;
@@ -257,6 +258,7 @@ namespace Sabacc
 
 
             namePlayer.Text = "Joueur " + playerInGame;
+            MessageBox.Show("Au tour de joueur " + playerInGame);
             NumPoint.Text = Convert.ToString(playerPoints[playerInGame-1]);
 
 
@@ -266,7 +268,9 @@ namespace Sabacc
             DicePtc.BackColor = Color.Empty;
 
             counter++;
-            
+
+            this.Show();
+
         }//end nextPlayerClick
                        
         /// <summary>
