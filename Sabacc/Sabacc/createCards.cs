@@ -49,16 +49,5 @@ namespace Sabacc
             
             return CardSValue;
         }
-
-        public void changeValueCard()
-        {
-
-        }
-
-        public void seeAdvCard(int playerToSpy,int carteToSpy)
-        {
-            
-        }
-
     }
 }

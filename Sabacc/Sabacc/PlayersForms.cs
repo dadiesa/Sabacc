@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
+
 namespace Sabacc
 {
     public partial class PlayersForms : Form
@@ -16,6 +17,7 @@ namespace Sabacc
         
         static public string[,] playerValues;
         public int[] playerPoints;
+        public int[] playerNumCards;
         //Constante
         const int numOfCard = 1;
         //Variables
@@ -56,6 +58,9 @@ namespace Sabacc
             //Crée un tableau pour stocker les points
             playerPoints = new int[5];
 
+            //stock le nombre de carte des joueurs
+            playerNumCards = new int[5];
+
             namePlayer.Text = "Joueur 1";
             NumPoint.Text = Convert.ToString(playerPoints[playerInGame - 1]);
 
@@ -81,10 +86,11 @@ namespace Sabacc
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void deck_Click(object sender, EventArgs e)
-        {
+        {                                                                                                                                                                                                                                                                       
             
             //Si le joueur a piocher toutes les cartes une d'elles est remplacé par une nouvelle valeur
-            if (playerValues[playerInGame-1,7] != null )
+            //if (playerValues[playerInGame-1,7] != null )
+            if(playerNumCards[playerInGame-1] > 7)
             {
                 //Choisi quel valeur va être changé
                 int wichCardChange = RandomNumber(1, 8);
@@ -133,6 +139,7 @@ namespace Sabacc
                         break;
                 }//end switch
                 showHand.Enabled = true;
+                deck.Enabled = false;
             }//end if
             else
             {                                      
@@ -155,7 +162,7 @@ namespace Sabacc
                 {
                     deck.Enabled = false;
                 }
-                //Peut montrer sa main que à partir de 5 carte
+                //Peut montrer sa main que à partir de 5 cartes
                 if (cardDeck > 3)
                 {
                     showHand.Enabled = true;
@@ -203,6 +210,7 @@ namespace Sabacc
                 //Indique le nombre de carte piochées
                 cardDeck++;
                 i++;
+                playerNumCards[playerInGame-1] = playerNumCards[playerInGame-1] + 1;
             }//end else
         }//end deckClick
 
@@ -332,6 +340,11 @@ namespace Sabacc
             //récupère le nombre de point des joueurs
             playerPoints = recap.SaveWinner(playerPoints);
 
+            //Remet à 0 le nombre de carte tiré
+            for (int i = 0; i < 5 ;i++)
+            {
+                playerNumCards[i] = 0;
+            }
             showHand.Enabled = false;
 
         }//end showHand
@@ -368,7 +381,7 @@ namespace Sabacc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerChangeValue_Tick_1(object sender, EventArgs e)
+       /* private void timerChangeValue_Tick_1(object sender, EventArgs e)
         {
             /*time++;
             if (time > 10)
@@ -387,6 +400,6 @@ namespace Sabacc
                 //MessageBox.Show("allHands");
             }*/
                        
-        }
+        //}
     }//end PlayerForm
 }

@@ -94,7 +94,7 @@ namespace Sabacc
                 //Si le joueur à un 2 un 3 et un IDIOT
                 if (haveIdiot && haveTwo && haveThree)
                 {
-                    comboPlayer.Text = "Total : " + Convert.ToString(playerTotal) + " Vainqueur";
+                    comboPlayer.Text = "Total : " + Convert.ToString(playerTotal) + " Vainqueur par Idiot";
                     roundWinner = i;
                     tempWinner = HandOfEveryBody[i];
                     winWith23 = true;
@@ -139,6 +139,18 @@ namespace Sabacc
                 haveThree = false;
 
             }//end for
+
+            //Vide le tableau pour que les joueur recommence le tour
+            for(int i = 0; i < numberOfPlayer; i++)
+            {
+                for(int j = 0;j < 8; j++)
+                {
+                    recap[i, j] = null;
+                }
+            }
+
+
+
         }//end recapHand
 
         /// <summary>

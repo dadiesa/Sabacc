@@ -30,3 +30,14 @@ D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.reso
 D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\obj\Debug\Sabacc.Properties.Resources.resources
 D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\obj\Debug\Sabacc.recapHands.resources
 D:\DATA\dadiesa\GitKraken\depot\Sabacc\Sabacc\obj\Debug\Sabacc.csproj.GenerateResource.Cache
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\bin\Debug\Sabacc.exe.config
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.exe
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.pdb
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\bin\Debug\Sabacc.exe
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\bin\Debug\Sabacc.pdb
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.csprojResolveAssemblyReference.cache
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.Sabacc.resources
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.PlayersForms.resources
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.Properties.Resources.resources
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.recapHands.resources
+H:\Démomot\Nouveau dossier\Sabacc\Sabacc\obj\Debug\Sabacc.csproj.GenerateResource.Cache

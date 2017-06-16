@@ -217,7 +217,7 @@
             // timerChangeValue
             // 
             this.timerChangeValue.Interval = 1000;
-            this.timerChangeValue.Tick += new System.EventHandler(this.timerChangeValue_Tick_1);
+            //this.timerChangeValue.Tick += new System.EventHandler(this.timerChangeValue_Tick_1);
             // 
             // enemyCard
             // 
@@ -306,7 +306,7 @@
             this.Controls.Add(this.showHand);
             this.Controls.Add(this.deck);
             this.Name = "PlayersForms";
-            this.Text = "6";
+            this.Text = "aj";
             ((System.ComponentModel.ISupportInitialize)(this.DicePtc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
